@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08131f">
+  <title>CardioFlow A</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="logo-icon">♥</div>
+    <div>
+      <h1>CardioFlow A</h1>
+      <p class="subtitle">Sistema de circulación experimental</p>
+    </div>
+  </div>
+  <div class="badge" id="systemBadge">DESCONECTADO</div>
+</header>
+<main>
+  <p class="section-title">Monitor del sistema</p>
+  <section class="grid">
+    <div class="card">
+      <div class="card-label">Flujo de agua</div>
+      <div class="metric">
+        <strong id="flowState" class="text-state">--</strong>
+        <span id="flowUnit"></span>
+      </div>
+      <div class="metric-note" id="flowNote">Esperando datos reales del PIC</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Frecuencia de bombeo</div>
+      <div class="metric">
+        <strong id="bpm">--</strong>
+        <span>ciclos/min</span>
+      </div>
+      <div class="metric-note" id="modeLabel">Sin conexión: aún no hay datos del PIC</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Conexión Bluetooth</div>
+      <div class="connection-row" style="margin-top: 18px">
+        <div class="connection-status">
+          <span class="dot" id="connectionDot"></span>
+          <span id="connectionStatus">JDY-3X desconectado</span>
+        </div>
+        <button class="primary connect-button" id="connectBtn">CONECTAR</button>
+      </div>
+      <div class="metric-note" id="connectionNote">Usa Chrome o Edge y activa el JDY-3X.</div>
+    </div>
+  </section>
+  <section class="dashboard">
+    <div class="card chart-card">
+      <div class="chart-header">
+        <h2 id="chartTitle">Flujo en el circuito</h2>
+        <span class="chart-label" id="chartStatus">Sin mediciones</span>
+      </div>
+      <canvas id="flowChart"></canvas>
+      <div class="metric-note">La gráfica se actualiza únicamente con lecturas recibidas por Bluetooth.</div>
+    </div>
+    <div class="card">
+      <h2>Control del sistema</h2>
+      <p class="card-label" style="margin-top: 18px">Seleccionar modo de funcionamiento</p>
+      <div class="mode-buttons">
+        <button data-mode="NORMAL" disabled>NORMAL</button>
+        <button data-mode="TAQUI" disabled>TAQUI</button>
+        <button data-mode="BRADI" disabled>BRADI</button>
+      </div>
+      <button class="stop-button" id="stopBtn" disabled>DETENER</button>
+      <div class="notice" id="message">Conecta el JDY-3X para habilitar los controles. No se muestran datos simulados.</div>
+    </div>
+  </section>
+  <section class="card history">
+    <h2>Registro de eventos</h2>
+    <div class="history-list" id="history">
+      <div class="history-item"><span>Sistema iniciado</span><span>Esperando Bluetooth</span></div>
+    </div>
+  </section>
+</main>
+<footer>
+  CardioFlow A · Proyecto de Ingeniería Biomédica
+  <br>
+  Prototipo experimental — No destinado a uso clínico
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
